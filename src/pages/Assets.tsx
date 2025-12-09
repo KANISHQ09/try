@@ -55,69 +55,69 @@ export default function Assets() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 text-slate-800 dark:text-slate-100">
       <div>
-        <h2 className="text-3xl font-bold text-slate-800">Asset Management</h2>
-        <p className="text-slate-600 mt-1">Monitor and manage all substation components</p>
+        <h2 className="text-3xl font-bold text-slate-800 dark:text-white">Asset Management</h2>
+        <p className="text-slate-600 dark:text-slate-400 mt-1">Monitor and manage all substation components</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-slate-600 font-medium">Optimal</p>
+              <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">Optimal</p>
               <p className="text-3xl font-bold text-green-600 mt-1">{statusCounts.optimal}</p>
             </div>
-            <div className="bg-green-100 p-3 rounded-lg">
-              <CheckCircle className="w-8 h-8 text-green-600" />
+            <div className="bg-green-100 dark:bg-green-900 p-3 rounded-lg">
+              <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-300" />
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-slate-600 font-medium">Warning</p>
+              <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">Warning</p>
               <p className="text-3xl font-bold text-yellow-600 mt-1">{statusCounts.warning}</p>
             </div>
-            <div className="bg-yellow-100 p-3 rounded-lg">
-              <AlertTriangle className="w-8 h-8 text-yellow-600" />
+            <div className="bg-yellow-100 dark:bg-yellow-900 p-3 rounded-lg">
+              <AlertTriangle className="w-8 h-8 text-yellow-600 dark:text-yellow-300" />
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-slate-600 font-medium">Critical</p>
+              <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">Critical</p>
               <p className="text-3xl font-bold text-red-600 mt-1">{statusCounts.critical}</p>
             </div>
-            <div className="bg-red-100 p-3 rounded-lg">
-              <Zap className="w-8 h-8 text-red-600" />
+            <div className="bg-red-100 dark:bg-red-900 p-3 rounded-lg">
+              <Zap className="w-8 h-8 text-red-600 dark:text-red-300" />
             </div>
           </div>
         </div>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
         <div className="flex flex-col md:flex-row gap-4 mb-6">
           <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 dark:text-slate-400 w-5 h-5" />
             <input
               type="text"
               placeholder="Search components..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full pl-10 pr-4 py-2 border border-slate-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-800 dark:text-white"
             />
           </div>
 
           <div className="flex items-center space-x-2">
-            <Filter className="text-slate-400 w-5 h-5" />
+            <Filter className="text-slate-400 dark:text-slate-400 w-5 h-5" />
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="px-4 py-2 border border-slate-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-slate-700 text-slate-800 dark:text-white"
             >
               {categories.map(cat => (
                 <option key={cat} value={cat}>
@@ -132,16 +132,16 @@ export default function Assets() {
           {filteredComponents.map((component) => (
             <div
               key={component.id}
-              className="border border-slate-200 rounded-lg p-4 hover:shadow-md transition-all hover:border-blue-300"
+              className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-4 hover:shadow-md transition-all hover:border-blue-300"
             >
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-center space-x-2">
                   <span className="text-2xl">{categoryIcons[component.category]}</span>
                   <div>
-                    <h3 className="font-semibold text-slate-800 text-sm leading-tight">
+                    <h3 className="font-semibold text-slate-800 dark:text-white text-sm leading-tight">
                       {component.name}
                     </h3>
-                    <p className="text-xs text-slate-500 mt-0.5">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                       {component.category.replace(/_/g, ' ')}
                     </p>
                   </div>
@@ -151,20 +151,20 @@ export default function Assets() {
               <div className="space-y-2">
                 {component.voltage_kv && (
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-slate-600">Voltage</span>
-                    <span className="font-medium text-slate-800">{component.voltage_kv} kV</span>
+                    <span className="text-slate-600 dark:text-slate-400">Voltage</span>
+                    <span className="font-medium text-slate-800 dark:text-white">{component.voltage_kv} kV</span>
                   </div>
                 )}
 
                 {component.healthScore && (
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-slate-600">Health Score</span>
-                    <span className="font-medium text-slate-800">{component.healthScore}%</span>
+                    <span className="text-slate-600 dark:text-slate-400">Health Score</span>
+                    <span className="font-medium text-slate-800 dark:text-white">{component.healthScore}%</span>
                   </div>
                 )}
 
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-slate-600">Status</span>
+                  <span className="text-sm text-slate-600 dark:text-slate-400">Status</span>
                   <span className={`flex items-center space-x-1 px-2 py-1 rounded-md text-xs font-medium border ${getStatusColor(component.status)}`}>
                     {getStatusIcon(component.status)}
                     <span className="capitalize">{component.status}</span>
@@ -172,7 +172,7 @@ export default function Assets() {
                 </div>
 
                 {component.lastAnalyzed && (
-                  <div className="text-xs text-slate-500 mt-2 pt-2 border-t border-slate-100">
+                  <div className="text-xs text-slate-500 dark:text-slate-400 mt-2 pt-2 border-t border-slate-100 dark:border-slate-700">
                     Last analyzed: {new Date(component.lastAnalyzed).toLocaleDateString()}
                   </div>
                 )}
@@ -183,7 +183,7 @@ export default function Assets() {
 
         {filteredComponents.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-slate-500">No components found</p>
+            <p className="text-slate-500 dark:text-slate-400">No components found</p>
           </div>
         )}
       </div>

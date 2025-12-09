@@ -54,16 +54,16 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 text-slate-800 dark:text-white">
       <div>
-        <h2 className="text-3xl font-bold text-slate-800">Analysis Dashboard</h2>
-        <p className="text-slate-600 mt-1">Upload component data for AI-powered health analysis</p>
+        <h2 className="text-3xl font-bold text-slate-800 dark:text-white">Analysis Dashboard</h2>
+        <p className="text-slate-600 mt-1 dark:text-white">Upload component data for AI-powered health analysis</p>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-8">
+      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-8">
         <div className="flex flex-col items-center justify-center space-y-4">
-          <div className="bg-blue-50 p-6 rounded-full">
-            <Upload className="w-12 h-12 text-blue-600" />
+          <div className="bg-blue-50 dark:bg-slate-700 p-6 rounded-full">
+            <Upload className="w-12 h-12 text-blue-600 dark:text-white" />
           </div>
 
           <div className="text-center">
@@ -79,27 +79,27 @@ export default function Dashboard() {
                 className="hidden"
               />
             </label>
-            <p className="text-sm text-slate-500 mt-3">
+            <p className="text-sm text-slate-500 mt-3 dark:text-white">
               Select a component data file from the substation_data folder
             </p>
           </div>
 
           {file && (
-            <div className="flex items-center space-x-2 bg-slate-50 px-4 py-2 rounded-lg">
-              <FileText className="w-4 h-4 text-slate-600" />
-              <span className="text-sm font-medium text-slate-700">{file.name}</span>
+            <div className="flex items-center space-x-2 bg-slate-50 dark:bg-slate-700 px-4 py-2 rounded-lg">
+              <FileText className="w-4 h-4 text-slate-600 dark:text-white" />
+              <span className="text-sm font-medium text-slate-700 dark:text-white">{file.name}</span>
             </div>
           )}
 
           {error && (
-            <div className="flex items-center space-x-2 bg-red-50 text-red-700 px-4 py-3 rounded-lg">
+            <div className="flex items-center space-x-2 bg-red-50 dark:bg-red-900 text-red-700 dark:text-white px-4 py-3 rounded-lg">
               <AlertCircle className="w-5 h-5" />
               <span className="text-sm font-medium">{error}</span>
             </div>
           )}
 
           {success && (
-            <div className="flex items-center space-x-2 bg-green-50 text-green-700 px-4 py-3 rounded-lg">
+            <div className="flex items-center space-x-2 bg-green-50 dark:bg-green-900 text-green-700 dark:text-white px-4 py-3 rounded-lg">
               <CheckCircle className="w-5 h-5" />
               <span className="text-sm font-medium">Analysis complete! Redirecting...</span>
             </div>
@@ -119,28 +119,28 @@ export default function Dashboard() {
       </div>
 
       {csvData && (
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-          <div className="bg-slate-50 px-6 py-4 border-b border-slate-200">
-            <h3 className="font-semibold text-slate-800">Data Preview</h3>
-            <p className="text-sm text-slate-600">First 100 rows of {csvData.rows.length} total records</p>
+        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
+          <div className="bg-slate-50 dark:bg-slate-700 px-6 py-4 border-b border-slate-200 dark:border-slate-700">
+            <h3 className="font-semibold text-slate-800 dark:text-white">Data Preview</h3>
+            <p className="text-sm text-slate-600 dark:text-white">First 100 rows of {csvData.rows.length} total records</p>
           </div>
 
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-slate-50 border-b border-slate-200">
+              <thead className="bg-slate-50 dark:bg-slate-700 border-b border-slate-200 dark:border-slate-700">
                 <tr>
                   {csvData.headers.slice(0, 8).map((header, i) => (
-                    <th key={i} className="px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider">
+                    <th key={i} className="px-4 py-3 text-left text-xs font-semibold text-slate-600 dark:text-white uppercase tracking-wider">
                       {header}
                     </th>
                   ))}
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
                 {csvData.rows.slice(0, 10).map((row, i) => (
-                  <tr key={i} className="hover:bg-slate-50 transition-colors">
+                  <tr key={i} className="hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
                     {csvData.headers.slice(0, 8).map((header, j) => (
-                      <td key={j} className="px-4 py-3 text-sm text-slate-700">
+                      <td key={j} className="px-4 py-3 text-sm text-slate-700 dark:text-white">
                         {typeof row[header] === 'number'
                           ? (row[header] as number).toFixed(2)
                           : row[header]}
@@ -152,7 +152,7 @@ export default function Dashboard() {
             </table>
           </div>
 
-          <div className="bg-slate-50 px-6 py-3 border-t border-slate-200 text-center text-sm text-slate-600">
+          <div className="bg-slate-50 dark:bg-slate-700 px-6 py-3 border-t border-slate-200 dark:border-slate-700 text-center text-sm text-slate-600 dark:text-white">
             Showing 10 of {csvData.rows.length} rows • {csvData.headers.length} columns total
           </div>
         </div>

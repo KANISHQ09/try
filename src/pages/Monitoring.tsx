@@ -16,18 +16,18 @@ export default function Monitoring() {
 
   if (!latestAnalysis) {
     return (
-      <div className="space-y-6">
+      <div className="space-y-6 dark:text-white">
         <div>
-          <h2 className="text-3xl font-bold text-slate-800">AI Monitoring</h2>
-          <p className="text-slate-600 mt-1">Real-time component health analysis</p>
+          <h2 className="text-3xl font-bold text-slate-800 dark:text-white">AI Monitoring</h2>
+          <p className="text-slate-600 mt-1 dark:text-slate-300">Real-time component health analysis</p>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-12 text-center">
-          <div className="bg-slate-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Brain className="w-10 h-10 text-slate-400" />
+        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-12 text-center">
+          <div className="bg-slate-50 dark:bg-slate-700 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Brain className="w-10 h-10 text-slate-400 dark:text-slate-300" />
           </div>
-          <h3 className="text-xl font-semibold text-slate-800 mb-2">No Analysis Available</h3>
-          <p className="text-slate-600 mb-6">Upload a component CSV file from the Dashboard to see AI-powered insights</p>
+          <h3 className="text-xl font-semibold text-slate-800 dark:text-white mb-2">No Analysis Available</h3>
+          <p className="text-slate-600 dark:text-slate-300 mb-6">Upload a component CSV file from the Dashboard to see AI-powered insights</p>
           <a
             href="/"
             className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors inline-block"
@@ -41,15 +41,15 @@ export default function Monitoring() {
 
   const getAlertStyle = (level: string) => {
     switch (level) {
-      case 'OPTIMAL': return 'bg-green-50 border-green-200 text-green-700';
-      case 'WARNING': return 'bg-yellow-50 border-yellow-200 text-yellow-700';
-      case 'CRITICAL': return 'bg-red-50 border-red-200 text-red-700';
-      default: return 'bg-slate-50 border-slate-200 text-slate-700';
+      case 'OPTIMAL': return 'bg-green-50 border-green-200 text-green-700 dark:bg-green-900/20 dark:border-green-700 dark:text-green-300';
+      case 'WARNING': return 'bg-yellow-50 border-yellow-200 text-yellow-700 dark:bg-yellow-900/20 dark:border-yellow-700 dark:text-yellow-300';
+      case 'CRITICAL': return 'bg-red-50 border-red-200 text-red-700 dark:bg-red-900/20 dark:border-red-700 dark:text-red-300';
+      default: return 'bg-slate-50 border-slate-200 text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-200';
     }
   };
 
-  const healthGaugeColor = latestAnalysis.health_score > 80 ? 'text-green-600' :
-                           latestAnalysis.health_score > 50 ? 'text-yellow-600' : 'text-red-600';
+  const healthGaugeColor = latestAnalysis.health_score > 80 ? 'text-green-600 dark:text-green-400' :
+                           latestAnalysis.health_score > 50 ? 'text-yellow-600 dark:text-yellow-400' : 'text-red-600 dark:text-red-400';
 
   const factorsData = latestAnalysis.top_factors.map(([name, value]) => ({
     name: name.replace(/_/g, ' ').substring(0, 20),
@@ -69,18 +69,18 @@ export default function Monitoring() {
   const firstTrendKey = Object.keys(trendsData[0]).find(k => k !== 'hour') || '';
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 dark:text-white">
       <div>
-        <h2 className="text-3xl font-bold text-slate-800">AI Monitoring</h2>
-        <p className="text-slate-600 mt-1">Real-time component health analysis</p>
+        <h2 className="text-3xl font-bold text-slate-800 dark:text-white">AI Monitoring</h2>
+        <p className="text-slate-600 mt-1 dark:text-slate-300">Real-time component health analysis</p>
       </div>
 
-      <div className={`border-2 rounded-xl p-6 ${getAlertStyle(latestAnalysis.alert_level)}`}>
+      <div className={`border-2 rounded-xl p-6 ${getAlertStyle(latestAnalysis.alert_level)} dark:border-slate-700`}>
         <div className="flex items-center space-x-3">
-          <AlertCircle className="w-6 h-6" />
+          <AlertCircle className="w-6 h-6 text-slate-700 dark:text-slate-300" />
           <div>
-            <h3 className="font-bold text-lg">Alert Level: {latestAnalysis.alert_level}</h3>
-            <p className="text-sm opacity-90">
+            <h3 className="font-bold text-lg text-slate-800 dark:text-white">Alert Level: {latestAnalysis.alert_level}</h3>
+            <p className="text-sm opacity-90 text-slate-600 dark:text-slate-300">
               Component: {latestAnalysis.componentName} • Analyzed: {new Date(latestAnalysis.timestamp).toLocaleString()}
             </p>
           </div>
@@ -88,17 +88,17 @@ export default function Monitoring() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold text-slate-800">Health Score</h3>
-            <Target className="w-5 h-5 text-slate-400" />
+            <h3 className="font-semibold text-slate-800 dark:text-white">Health Score</h3>
+            <Target className="w-5 h-5 text-slate-400 dark:text-slate-300" />
           </div>
           <div className="text-center">
             <div className={`text-6xl font-bold ${healthGaugeColor} mb-2`}>
               {latestAnalysis.health_score.toFixed(1)}
             </div>
-            <div className="text-slate-600 text-sm">out of 100</div>
-            <div className="mt-4 bg-slate-100 rounded-full h-3 overflow-hidden">
+            <div className="text-slate-600 text-sm dark:text-slate-300">out of 100</div>
+            <div className="mt-4 bg-slate-100 dark:bg-slate-700 rounded-full h-3 overflow-hidden">
               <div
                 className={`h-full ${
                   latestAnalysis.health_score > 80 ? 'bg-green-500' :
@@ -110,48 +110,48 @@ export default function Monitoring() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold text-slate-800">Remaining Useful Life</h3>
-            <Calendar className="w-5 h-5 text-slate-400" />
+            <h3 className="font-semibold text-slate-800 dark:text-white">Remaining Useful Life</h3>
+            <Calendar className="w-5 h-5 text-slate-400 dark:text-slate-300" />
           </div>
           <div className="text-center">
-            <div className="text-5xl font-bold text-blue-600 mb-2">
+            <div className="text-5xl font-bold text-blue-600 dark:text-blue-400 mb-2">
               {Math.floor(latestAnalysis.rul_days)}
             </div>
-            <div className="text-slate-600 text-sm">days estimated</div>
-            <div className="mt-4 text-xs text-slate-500">
+            <div className="text-slate-600 text-sm dark:text-slate-300">days estimated</div>
+            <div className="mt-4 text-xs text-slate-500 dark:text-slate-400">
               ≈ {Math.floor(latestAnalysis.rul_days / 30)} months
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold text-slate-800">ML Engine Status</h3>
-            <Brain className="w-5 h-5 text-slate-400" />
+            <h3 className="font-semibold text-slate-800 dark:text-white">ML Engine Status</h3>
+            <Brain className="w-5 h-5 text-slate-400 dark:text-slate-300" />
           </div>
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-slate-600">Model Type</span>
-              <span className="text-sm font-medium text-slate-800">RF + LSTM</span>
+              <span className="text-sm text-slate-600 dark:text-slate-300">Model Type</span>
+              <span className="text-sm font-medium text-slate-800 dark:text-white">RF + LSTM</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-slate-600">Features</span>
-              <span className="text-sm font-medium text-slate-800">{latestAnalysis.top_factors.length}+</span>
+              <span className="text-sm text-slate-600 dark:text-slate-300">Features</span>
+              <span className="text-sm font-medium text-slate-800 dark:text-white">{latestAnalysis.top_factors.length}+</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-slate-600">Confidence</span>
-              <span className="text-sm font-medium text-green-600">High</span>
+              <span className="text-sm text-slate-600 dark:text-slate-300">Confidence</span>
+              <span className="text-sm font-medium text-green-600 dark:text-green-400">High</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
         <div className="flex items-center space-x-2 mb-6">
-          <Activity className="w-5 h-5 text-slate-600" />
-          <h3 className="font-semibold text-slate-800 text-lg">Critical Risk Factors</h3>
+          <Activity className="w-5 h-5 text-slate-600 dark:text-slate-300" />
+          <h3 className="font-semibold text-slate-800 dark:text-white text-lg">Critical Risk Factors</h3>
         </div>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={factorsData}>
@@ -167,10 +167,10 @@ export default function Monitoring() {
         </ResponsiveContainer>
         <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
           {latestAnalysis.top_factors.map(([name, value], i) => (
-            <div key={i} className="bg-slate-50 rounded-lg p-3">
-              <div className="text-xs text-slate-600 mb-1">#{i + 1} Factor</div>
-              <div className="font-medium text-slate-800 text-sm">{name.replace(/_/g, ' ')}</div>
-              <div className="text-xs text-blue-600 font-semibold mt-1">
+            <div key={i} className="bg-slate-50 dark:bg-slate-700 rounded-lg p-3">
+              <div className="text-xs text-slate-600 dark:text-slate-300 mb-1">#{i + 1} Factor</div>
+              <div className="font-medium text-slate-800 dark:text-white text-sm">{name.replace(/_/g, ' ')}</div>
+              <div className="text-xs text-blue-600 dark:text-blue-400 font-semibold mt-1">
                 {(value * 100).toFixed(1)}% impact
               </div>
             </div>
@@ -178,10 +178,10 @@ export default function Monitoring() {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
         <div className="flex items-center space-x-2 mb-6">
-          <TrendingUp className="w-5 h-5 text-slate-600" />
-          <h3 className="font-semibold text-slate-800 text-lg">24-Hour Predictive Forecast</h3>
+          <TrendingUp className="w-5 h-5 text-slate-600 dark:text-slate-300" />
+          <h3 className="font-semibold text-slate-800 dark:text-white text-lg">24-Hour Predictive Forecast</h3>
         </div>
         <ResponsiveContainer width="100%" height={350}>
           <LineChart data={trendsData}>
@@ -202,8 +202,8 @@ export default function Monitoring() {
             />
           </LineChart>
         </ResponsiveContainer>
-        <div className="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
-          <p className="text-sm text-blue-800">
+        <div className="mt-4 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700 rounded-lg p-4">
+          <p className="text-sm text-blue-800 dark:text-blue-200">
             <strong>AI Insight:</strong> The LSTM neural network has projected the next 24 hours of operational parameters.
             Monitor for deviations from expected ranges to prevent potential failures.
           </p>
