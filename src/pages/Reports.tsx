@@ -30,7 +30,7 @@ export default function Reports() {
     // Title
     doc.setFontSize(20);
     doc.setTextColor(41, 128, 185);
-    doc.text('SubStation AI - Component Health Report', 20, 20);
+    doc.text('SHAKTI - Component Report', 20, 20);
 
     // Component Details
     doc.setFontSize(12);
