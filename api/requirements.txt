@@ -2,7 +2,7 @@ fastapi
 uvicorn
 python-multipart
 pandas
-numpy<2.0.0
+numpy
 scikit-learn
 joblib
 tensorflow-cpu
